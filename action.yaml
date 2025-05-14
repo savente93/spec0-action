@@ -1,0 +1,23 @@
+name: "Generate SPEC-0000 Data"
+description: "Based on the current SPEC 0 schedule, generate a tarball with the latest versions of all packages."
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    - name: Install dependencies
+      shell: bash
+      run: |
+        pip install -r requirements.txt
+    - name: Run spec_zero_versions.py
+      shell: bash
+      run: |
+        python spec_zero_versions.py
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: "spec_zero_data/*.tar.xz"
