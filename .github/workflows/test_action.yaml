@@ -20,3 +20,14 @@ jobs:
           printf "\n\n"
           printf "Contents of schedule.md:\n"
           cat schedule.md
+          printf "\n\n"
+      - name: Remove generated files
+        run: |
+          printf "Removing generated files...\n"
+          rm -f chart.md schedule.json schedule.md
+          ls -R
+      - uses: actions/download-artifact@v4
+        with:
+          name: spec-zero-versions
+      - name: Display structure of downloaded files
+        run: ls -R
