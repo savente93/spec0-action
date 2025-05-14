@@ -16,8 +16,11 @@ runs:
       shell: bash
       run: |
         python spec_zero_versions.py
-    - name: Upload artifact
+    - name: Upload files as an artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ inputs.artifact-name }}
-        path: "spec_zero_data/*.tar.xz"
+        name: spec-zero-versions
+        path: |
+          schedule.json
+          schedule.md
+          chart.md

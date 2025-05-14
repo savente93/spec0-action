@@ -1,0 +1,33 @@
+name: Test Action
+on: [push, pull_request]
+
+jobs:
+  generate_data:
+    runs-on: ubuntu-latest
+    name: Generate version data
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Generate version data using local action
+        uses: ./
+      - name: Check file contents
+        run: |
+          printf "Contents of chart.md:\n"
+          cat chart.md
+          printf "\n\n"
+          printf "Contents of schedule.json:\n"
+          cat schedule.json
+          printf "\n\n"
+          printf "Contents of schedule.md:\n"
+          cat schedule.md
+          printf "\n\n"
+      - name: Remove generated files
+        run: |
+          printf "Removing generated files...\n"
+          rm -f chart.md schedule.json schedule.md
+          ls -R
+      - uses: actions/download-artifact@v4
+        with:
+          name: spec-zero-versions
+      - name: Display structure of downloaded files
+        run: ls -R
