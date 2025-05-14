@@ -1,0 +1,20 @@
+name: Test Action
+on: [push, pull_request]
+
+jobs:
+  generate_data:
+    runs-on: ubuntu-latest
+    name: Generate version data
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Generate version data
+        uses: ./ # Uses an action in the root directory
+      - name: Check file contents
+        run: |
+          echo "Contents of chart.md:"
+          cat chart.md
+          echo "Contents of schedule.json:"
+          cat schedule.json
+          echo "Contents of schedule.md:"
+          cat schedule.md
