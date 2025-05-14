@@ -8,13 +8,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Generate version data
-        uses: ./ # Uses an action in the root directory
+      - name: Generate version data using local action
+        uses: ./
       - name: Check file contents
         run: |
-          echo "Contents of chart.md:"
+          printf "Contents of chart.md:\n"
           cat chart.md
-          echo "Contents of schedule.json:"
+          printf "\n\n"
+          printf "Contents of schedule.json:\n"
           cat schedule.json
-          echo "Contents of schedule.md:"
+          printf "\n\n"
+          printf "Contents of schedule.md:\n"
           cat schedule.md
