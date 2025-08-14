@@ -16,7 +16,7 @@ jobs:
   devstats-query:
     runs-on: ubuntu-latest
     steps:
-      - uses: scientific-python/spec-zero-tools@main
+      - uses: scientific-python/spec0-action@main
 ```
 
 The above would produce an artifact named `spec-zero-versions`, the following files: `schedule.yaml`,`schedule.md` and `chart.md`.
