@@ -38,8 +38,8 @@ runs:
     - name: Set up Git
       shell: bash
       run: |
-        git config user.name "GitHub Actions [bot]"
-        git config user.email "github-actions-bot@users.noreply.github.com"
+        git config user.name "Scientific Python [bot]"
+        git config user.email "scientific-python@users.noreply.github.com"
 
     - name: Download schedule artifact
       shell: bash
@@ -49,8 +49,9 @@ runs:
       run: |
         set -e
         if [ ! -f "${{ github.workspace }}/$SCHEDULE_FILE" ]; then
-          echo "Downloading schedule.json from latest release..."
-          gh release download -R "savente93/SPEC0-schedule" --pattern schedule.json -O "${{ github.workspace }}/$SCHEDULE_FILE"
+          echo "Regenerating schedule.json..."
+          pixi run generate-schedule 
+          mv schedule.json "${{ github.workspace }}/$SCHEDULE_FILE" 
         else
           echo "Schedule file already exists at $SCHEDULE_FILE"
         fi
