@@ -57,10 +57,10 @@ runs:
         if [ ! -f "${{ github.workspace }}/$SCHEDULE_FILE" ]; then
           echo "Regenerating schedule.json..."
           pixi run generate-schedule --locked
-          if test "schedule.json" != "${{ github.workspace }}/$SCHEDULE_FILE" && test diff -q schedule.json "${{ github.workspace }}/$SCHEDULE_FILE"; then
+        if diff -q schedule.json "${{ github.workspace }}/$SCHEDULE_FILE" >/dev/null; then
+            echo "Source and destination have identical contents – nothing to move."
+        else
             mv schedule.json "${{ github.workspace }}/$SCHEDULE_FILE"
-          else
-            echo "Source and destination are the same file – nothing to move."
           fi
         else
           echo "Schedule file already exists at $SCHEDULE_FILE"
