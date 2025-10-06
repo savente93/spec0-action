@@ -41,7 +41,13 @@ runs:
         git config user.name "Scientific Python [bot]"
         git config user.email "scientific-python@users.noreply.github.com"
 
-    - name: Download schedule artifact
+    - uses: prefix-dev/setup-pixi@v0.9.0
+      name: Setup Pixi
+      with:
+        pixi-version: v0.49.0
+        manifest-path: ${{ github.action_path }}/pyproject.toml
+
+    - name: Regenerate schedule file if necessary
       shell: bash
       env:
         SCHEDULE_FILE: ${{ inputs.schedule_path }}
@@ -56,11 +62,6 @@ runs:
           echo "Schedule file already exists at $SCHEDULE_FILE"
         fi
 
-    - uses: prefix-dev/setup-pixi@v0.9.0
-      name: Setup Pixi
-      with:
-        pixi-version: v0.49.0
-        manifest-path: ${{ github.action_path }}/pyproject.toml
 
     - name: Run update script
       shell: bash
