@@ -20,7 +20,7 @@ tomlkit                   = ">=0.13.3,<0.14"
 
 [tool.pixi.tasks]
 update-dependencies = { cmd = ["python", "run_spec0_update.py"] }
-generate-schedule= { cmd = ["python", "spec0_versions.py"] }
+generate-schedule = { cmd = ["python", "spec0_versions.py"] }
 
 [tool.pixi.feature.test.tasks]
 test = { cmd = ["pytest", "-vvv"] }

@@ -50,7 +50,7 @@ runs:
         set -e
         if [ ! -f "${{ github.workspace }}/$SCHEDULE_FILE" ]; then
           echo "Regenerating schedule.json..."
-          pixi run generate-schedule 
+          pixi run generate-schedule --locked
           mv schedule.json "${{ github.workspace }}/$SCHEDULE_FILE" 
         else
           echo "Schedule file already exists at $SCHEDULE_FILE"
