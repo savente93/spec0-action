@@ -1,5 +1,5 @@
 [project]
-authors         = [{ name = "Sam Vente", email = "savente93@proton.me" }]
+authors         = [{ name = "Scientific Python Developers"}]
 name            = "tests"
 description     = "This is just a dummy package for testing the spec 0 update github action and should not be used"
 requires-python = ">=3.10"

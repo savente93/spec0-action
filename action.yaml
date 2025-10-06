@@ -1,6 +1,6 @@
 name: "Update SPEC 0 dependencies"
 description: "Update the lower bounds of Python dependencies covered by the Scientific Python SPEC 0 support schedule"
-author: Sam Vente
+author: Scientific Python Developers
 inputs:
   target_branch:
     description: "Target branch for the pull request"
