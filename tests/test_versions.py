@@ -1,5 +1,5 @@
 from packaging.version import Version
-from update_spec0_dependencies.versions import repr_spec_set, tighten_lower_bound
+from spec0_action.versions import repr_spec_set, tighten_lower_bound
 from packaging.specifiers import SpecifierSet
 
 

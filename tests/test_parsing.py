@@ -1,4 +1,4 @@
-from update_spec0_dependencies.parsing import parse_version_spec, parse_pep_dependency
+from spec0_action.parsing import parse_version_spec, parse_pep_dependency
 from packaging.specifiers import SpecifierSet
 import pytest
 from urllib.parse import urlparse
