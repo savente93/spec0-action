@@ -73,17 +73,13 @@ runs:
         set -e
         echo "Updating ${{inputs.project_file_name}} using schedule ${{inputs.schedule_path}}"
         pixi run --manifest-path ${{ github.action_path }}/pyproject.toml update-dependencies  "${{ github.workspace }}/${{ inputs.project_file_name }}" "${{ github.workspace }}/${{ inputs.schedule_path }}"
-        if [ ! "$(git ls-files --error-unmatch ${{ github.workspace }}/${{ inputs.schedule_path }})" ]; then
-          # Clean up schedule file so it does not appear in PR but only if it wasn't tracked before
-          rm -f "${{ github.workspace }}/${{ inputs.schedule_path }}"
-        fi
 
     - name: Show changes (dry-run)
       if: ${{ inputs.create_pr != 'true' }}
       shell: bash
       run: |
         echo "Dry run: showing changes that would be committed"
-        git --no-pager diff
+        git --no-pager diff ${{ inputs.project_file_name }}
 
     - name: Create Pull Request
       if: ${{ inputs.create_pr == 'true' }}
@@ -91,6 +87,7 @@ runs:
       with:
         token: ${{ inputs.token }}
         commit-message: ${{ inputs.commit_msg }}
+        path: ${{ inputs.project_file_name }}
         title: ${{ inputs.pr_title }}
         body: "This PR was created automatically"
         base: ${{ inputs.target_branch }}
