@@ -26,7 +26,7 @@ jobs:
           printf "Removing generated files...\n"
           rm -f chart.md schedule.json schedule.md
           ls -R
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: spec-zero-versions
       - name: Display structure of downloaded files
