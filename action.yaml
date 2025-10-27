@@ -17,7 +17,7 @@ runs:
       run: |
         python spec_zero_versions.py
     - name: Upload files as an artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: spec-zero-versions
         path: |
